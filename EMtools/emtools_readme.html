@@ -1,0 +1,145 @@
+<head>
+<title>EMtools: eye movement processing programs written in Java</title>
+</head>
+
+<body lang=EN-US link=blue vlink=purple >
+
+<h1>EMtools: eye movement processing programs written in Java</h1>
+
+<p>coded by Tom Foulsham, University of Nottingham, 2007.</p>
+
+<p>
+<a
+href="http://www.psychology.nottingham.ac.uk/staff/lpxtf">http://www.psychology.nottingham.ac.uk/staff/lpxtf
+</a>
+<br>
+<br>
+
+</p>
+
+<h2>README CONTENTS</h2>
+<ol>
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#gs">Getting started</a></li>
+<li><a href="#fid">Formatting input data</a></li>
+<li>Programs:
+	<ul>
+	<li><a href="#batch">Scanpath batch comparison</a></li>
+	<li><a href="#roi">Region of interest analysis</a></li>
+	<li><a href="#pfm">Processing feature maps</a></li>
+	<li><a href="#pms">Plotting multiple scanpaths</a></li>
+	</ul>
+</li>
+<li><a href="#refs">References and acknowledgements</a></li>
+</ol>
+
+<br>
+
+<h2><a name="intro">INTRODUCTION</a></h2>
+
+<p>
+EMtools is a collection of simple programs which are designed to make visualising and analysing eye movement data a bit easier.  Feedback on these programs is welcome (<a href="mailto:lpxtf@psychology.nottingham.ac.uk">lpxtf@psychology.nottingham.ac.uk</a>). Although EMtools was written with certain research in mind (eye movements over relatively complex displays on a monitor) wherever possible the programs should be usable for many different paradigms.  The programs allow the user to load eye movement event data - specifically the sequence of fixations made, along with their 2D spatial coordinates.  Once this data is available EMtools allows fixations and saccades to be plotted (and saved to an image), scanpaths to be compared, and the fixations to be analysed in terms of underlying feature maps or user-defined regions.
+</p>
+
+<h2><a name="gs">GETTING STARTED</a></h2>
+
+<p>
+Several examples are included in the "my_files" directory of the installation, and the best way to see how the programs work is to try them out:
+</p>
+
+<ul>
+	<li>
+		<p>
+		From the main menu, select <b>"View scanpaths..."</b> and click <b>"Go!"</b>.  This will take you to the main scanpath viewing program.  To add a scanpath manually, click a series of locations within the blank area.  To add a second scanpath on the same space, click <b>"Add to 2nd scanpath"</b> and repeat the process.  Hit the <b>"Reset"</b> button to clear the display.    
+		</p>
+	</li>
+	<li>
+		<p>
+		Repeat the previous step, but when you have two scanpaths, click <b>"Compare scanpaths"</b> to open a new window.  This window summarises the different measures of scanpath similiarity of which EMTools is capable.
+	</li>	
+	<li>
+		<p>
+		Click on the <b>"Add images"</b> button.  This calls up a dalog box where you can choose a set of images.  Select all three of the examples (using Ctrl or Option+ click) and click <b>"Open"</b>.  The image filenames should now appear in the list.  Select one of them and it will be displayed.   
+		</p>
+	</li>
+	<li>
+		<p>
+		Select <b>"Plot from file"</b>.  Clicking <b>"Add EM data"</b> allows you to select data files containing eye movement coordinates.  Choose "Example1.txt" and "Example2.txt".  These files will now appear in the data list.  Choose the first example and click <b>"Load trials..."</b>.  A list of the different trials within this data file will appear, starting at "Trial 1" (this file has 100 scanpaths).  Select a trial and click <b>"Plot"</b> to view the scanpath!
+		</p>
+	</li>	
+	<li>
+		<p>
+		Reset and repeat the process with "Example2.txt".  This file has only 3 scanpaths, and each one is labelled with a set name linking it to an image.  If you try plotting one of these, EMTools will automatically select the appropriate image from those which appear in the list.
+		</p>
+	</li>	
+	<li>
+		<p>
+		Add the examples in the "maps" subfolder to the list by clicking <b>"Add maps"</b>.  This allows a grey value map to be loaded alongside an image.  Selecting a map filename in the list will load the map, and a cursor shows the value at any location in the image.  If a map in the list shares its filename with a data set it will automatically be loaded.  Try this with the "house.jpg" set in "Example2.txt".
+		</p>
+	</li>	
+	<li>
+		<p>
+		Clicking <b>"Options"</b> allows you to customize how scanpaths appear in the display.  Try making the markers a different size or changing their colour, and click <b>"Done"</b>.  You can now display scanpaths over an image, and clicking <b>"Save as image"</b> allows you to export the display to a picture file.
+		</p>
+	</li>			
+</ul>
+
+<p>
+The other programs can be accessed from the main menu and each is described in more detail below.
+</p>
+
+<h2><a name="fid">FORMATTING INPUT DATA</a></h2>
+
+<p>
+As the above example shows, EMTools can process eye movement data from plain, tab-delimited text files. In order to keep it as simple as possible, the format of each line of these files has to be as follows:
+</p>
+
+<p>
+[SetName (optional) ]	[Fixation Index]	[x in pixels]	[y in pixels]
+</p>
+
+<p>
+Check Example1.txt and Example2.txt for examples of this format.  Each line refers to a fixation with the coordinates (x,y).  The Fixation Index column must be an integer, starting at 1, which shows the series of fixations in one scanpath.  X and Y columns can be integers or decimals.  As yet these tools do not take into account the duration of fixations, and they assume that saccades travel directly between fixations.  Optionally, a set name can be included in the first column.  This could refer to the trial or image on which the scanpath was recorded.  It should be fairly easy to edit and save data files in this way from raw eyetracker output, using a spreadsheet such as MS Excel.  The presence of any other information in the files may lead to an error. 
+</p>
+
+<p>
+Some of the tools use other input files.  Briefly they are: images on which the scanpath can be displayed (most image types, .jpg, .bmp, .gif are ok); ROI (region of interest) text files; and feature maps (which must be ASCII format .pgm or .ppm files).  There are examples of each type in the relevant directory (e.g. "my_files/images/"), where you are advised to keep your own files.
+</p>
+
+<h2><a name="batch">SCANPATH BATCH COMPARISON</a></h2>
+
+<p>
+Clicking the <b>"Batch process scanpaths..."</b> option from the main menu takes you to a tool which allows multiple scanpaths from different files to be compared easily.  The output is written to a text file which can then be analysed elsewhere.  The two lists at the top of the frame allow data files to be loaded. Just select the file(s) you want to compare to each other, using Ctrl or Option to select multiple files if necessary.  Then choose from the different options which determine how the scanpaths are compared.  For example if you want to remove the first fixation, and include only the next five, select <b>"Use only fixations from"</b> and change the start and end index to "2" and "6".  The <b>"Output"</b> button at the bottom asks the user for an output file name and the comparisons are written to this file. If <b>"Compare sequentially"</b> is selected, the 1st scanpath in file A will be compared to the 1st in file B and so on.  If <b>"Match set names"</b> is chosen, only the comparisons between sets with the same label will be made. Remember that only those files highlighted in the list will be processed.  Although the tool is designed to work on lists of coordinates, ticking the <b>"Compare strings from file only"</b> option allows the string-edit distance method to be performed on two lists of character strings.  Finally, this tool will also allow the user to simulate randomly-generated scanpaths in order to determine how the metrics change with the different parameters.  Just choose the required settings and hit <b>"Output simulations"</b>.
+</p>
+
+<h2><a name="roi">ROI ANALYSIS</a></h2>
+
+<p>
+The <b>"Process regions of interest..."</b> tool allows the visual area to be broken down into regions.  An ROI file lists the name and four coordinates of one or several quadrilateral regions.  An output file can be generated which shows measures for each scanpath and each ROI (and optionally for each fixation).  Files are loaded in as previously, and checking the different options determines which measures will be computed.  If you have several different ROIs for different trials, you can give them the same name as the set name for that trial, and selecting <b>"Match set to ROI ID"</b> will automatically choose the correct ROI within a file.
+</p>
+
+<h2><a name="pfm">PROCESSING FEATURE MAPS</a></h2>
+
+<p>
+Some users may want to compare the scanpaths plotted with the underlying values in a feature map or fixation map.  This is simply a 2D matrix of pixel values corresponding to some measure of intensity.  For complex ROIs, it might be desirable to use an image mask to identify fixations.  At present, EMTools can read in plain ASCII .pgm files, or simple arrays of integers saved with a .pgm or .ppm extension.  Clicking <b>"Output value at fixation"</b> will produce an output file which extracts the value in the map at each fixation location.  Alternatively, a list of maps can be selected and statistics produced about each one, or their values can be averaged.
+</p>
+
+<h2><a name="pms">PLOTTING MULTIPLE SCANPATHS</a></h2>
+
+<p>
+Whilst the scanpath viewer allows one or two scanpaths to be visualised, the multiple plot tool allows many more fixations to be plotted.  The controls work in the same way as previously. The <b>"Plot"</b> button will display all eye movements on the canvas, or the sets to display can be filtered with a label from the set name.
+</p>
+
+<h2><a name="pms">REFERENCES AND ACKNOWLEDGEMENTS</a></h2>
+
+<p>
+The linear distance method for comparing scanpaths is based on Mannan, Ruddock and Wooding (1995).  Spatial Vision, 9, 363-386.  The UA variant is discussed in Henderson, Brockmole, Castelhano and Mack (2007). In van Gompel et al. (Eds.), Eye movements: A window on mind and brain, 537-562).  Some of the code is based on that found at <a href="http://www.merriampark.com">http://www.merriampark.com</a>.
+</p>
+
+<p>
+These tools are free for people to use in their research.  If you do make use of them, let me know what you think.  You might also like to read and cite one of my publications (for example Foulsham and Underwood, 2008, <a href="http://www.journalofvision.org/8/2/6/">www.journalofvision.org/8/2/6</a> ).  
+</p>
+
+</body>
+
+</html>
